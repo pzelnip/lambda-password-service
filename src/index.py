@@ -1,8 +1,5 @@
 from __future__ import print_function
 
-import httplib
-import urllib
-import json
 
 from passlib.hash import pbkdf2_sha256
 from passlib.hash import pbkdf2_sha512
