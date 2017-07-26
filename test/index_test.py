@@ -58,6 +58,14 @@ class TestLambdaHandler(unittest.TestCase):
 
         self.assertEqual(expected, result)
 
+    def test_default_hash_is_sha1(self):
+        event = _build_event('sha1', SAMPLE_SHA1_HASH, SAMPLE_PASSWORD)
+        expected = True
+
+        result = lambda_handler(event, None)
+
+        self.assertEqual(expected, result)
+
 
 def _build_event(digest, hash_pass, password):
     return {
