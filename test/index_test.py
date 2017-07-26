@@ -84,9 +84,18 @@ class TestLambdaHandler(unittest.TestCase):
         self.assertEqual(expected, result)
 
     def test_unspecified_hash_pass_returns_false(self):
-        event = _build_event('bcrypt', SAMPLE_BCRYPT_HASH, 'password')
+        event = _build_event('bcrypt', SAMPLE_BCRYPT_HASH, SAMPLE_PASSWORD)
         del event['hash_pass']
         expected = False
+
+        result = lambda_handler(event, None)
+
+        self.assertEqual(expected, result)
+
+    def test_unspecified_digest_uses_sha1(self):
+        event = _build_event('does not matter', SAMPLE_SHA1_HASH, SAMPLE_PASSWORD)
+        del event['digest']
+        expected = True
 
         result = lambda_handler(event, None)
 
