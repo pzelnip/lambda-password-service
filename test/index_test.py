@@ -75,7 +75,7 @@ class TestLambdaHandler(unittest.TestCase):
 
         self.assertEqual(expected, result)
 
-    def test_valid_sha1_hash_with_wrong_password_returns_false(self):
+    def test_valid_bcrypt_hash_with_wrong_password_returns_false(self):
         event = _build_event('bcrypt', SAMPLE_BCRYPT_HASH, 'this is not the password')
         expected = False
 

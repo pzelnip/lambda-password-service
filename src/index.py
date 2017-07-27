@@ -19,5 +19,5 @@ def lambda_handler(event, context):
     password = event['password']
     if not hash_pass:
         return False
-    hash_fn = HASH_MAPPINGS.get(digest)
+    hash_fn = HASH_MAPPINGS.get(digest, HASH_MAPPINGS.get(DEFAULT_HASH))
     return hash_fn.verify(password, hash_pass)
